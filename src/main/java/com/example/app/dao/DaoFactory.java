@@ -1,8 +1,8 @@
-package com.example.app;
+package com.example.app.dao;
 
 
-import com.example.app.dao.CarDao;
-import com.example.app.dao.JdbcCarDao;
+import com.example.app.dao.jdbc.ConnectionManager;
+import com.example.app.dao.jdbc.JdbcCarDao;
 
 public final class DaoFactory {
 
@@ -11,7 +11,7 @@ public final class DaoFactory {
 
     public static CarDao getCarDao() {
 //        return new MemoryCarDao();
-        return new JdbcCarDao();
+        return new JdbcCarDao(ConnectionManager.getConnection());
 //        return new JpaCarDao();
     }
 

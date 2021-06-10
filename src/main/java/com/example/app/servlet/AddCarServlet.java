@@ -1,6 +1,7 @@
-package com.example.app;
+package com.example.app.servlet;
 
 import com.example.app.dao.CarDao;
+import com.example.app.dao.DaoFactory;
 import com.example.app.model.Car;
 
 import javax.servlet.RequestDispatcher;
@@ -30,11 +31,13 @@ public class AddCarServlet extends HttpServlet {
 
             CarDao carDAO = DaoFactory.getCarDao();
             Car newCar = new Car(carName, price);
-            carDAO.addCar(newCar);
+            carDAO.create(newCar);
 
         } catch (NumberFormatException e) {
             // TODO : handle error
         }
+
+        resp.sendRedirect(req.getContextPath() + CarListServlet.URL);
 
     }
 }

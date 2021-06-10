@@ -4,6 +4,7 @@
     <title>Add Car</title>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
 
 <form action="${pageContext.request.contextPath}/add-car" method="post">
 
@@ -16,5 +17,6 @@
     <input type="submit" value="Add">
 </form>
 
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

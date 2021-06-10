@@ -1,6 +1,7 @@
-package com.example.app;
+package com.example.app.servlet;
 
 import com.example.app.dao.CarDao;
+import com.example.app.dao.DaoFactory;
 import com.example.app.model.Car;
 
 import javax.servlet.RequestDispatcher;
@@ -12,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/", "/list-car"})
+@WebServlet(urlPatterns = {"/"})
 public class CarListServlet extends HttpServlet {
+
+    public static final String URL = "/list-car";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

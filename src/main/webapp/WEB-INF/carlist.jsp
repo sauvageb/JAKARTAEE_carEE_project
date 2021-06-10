@@ -5,6 +5,7 @@
     <title>Car List</title>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
 
 <c:forEach items="${carList}" var="car">
 
@@ -13,5 +14,7 @@
     <a href="${pageContext.request.contextPath}/details-car?id=${car.id}">Show Details</a>
 
 </c:forEach>
+
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

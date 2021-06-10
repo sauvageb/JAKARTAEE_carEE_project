@@ -6,15 +6,15 @@ import java.util.List;
 
 public interface CarDao {
 
-    void addCar(Car product);
+    boolean create(Car car);
 
-    void updateCar(Car product);
+    void update(Car car);
 
-    Car findCarById(Long id);
+    Car findById(Long id);
 
     List<Car> findAll();
 
-    void removeCar(Car product);
+    void remove(Car car);
 
-    void removeCar(Long id);
+    void removeById(Long id);
 }

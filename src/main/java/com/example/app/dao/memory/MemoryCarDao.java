@@ -1,37 +1,37 @@
-package com.example.app;
+package com.example.app.dao.memory;
 
+import com.example.app.dao.CarDao;
+import com.example.app.dao.exception.UnknownCarException;
 import com.example.app.model.Car;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class MemoryCarDao implements com.example.app.dao.CarDao {
+public class MemoryCarDao implements CarDao {
 
-    private static List<Car> carList = new ArrayList();
+    private static List<Car> carList = new ArrayList<>();
     private static Long idSequence = 1L;
 
-    public void addCar(Car product) {
-        Long var1 = idSequence;
-        idSequence = idSequence + 1L;
-        product.setId(var1);
-        carList.add(product);
+    public boolean create(Car car) {
+        car.setId(++idSequence);
+        return carList.add(car);
     }
 
-    public void updateCar(Car product) {
-        int index = getCarIndexById(product.getId());
+    public void update(Car car) {
+        int index = getCarIndexById(car.getId());
         if (index > -1) {
-            carList.set(index, product);
+            carList.set(index, car);
         } else {
-            throw new UnknownCarException(product.getId());
+            throw new UnknownCarException(car.getId());
         }
     }
 
-    public Car findCarById(Long id) {
+    public Car findById(Long id) {
         int index = getCarIndexById(id);
         if (index > -1) {
-            Car product = carList.get(index);
-            return product;
+            Car car = carList.get(index);
+            return car;
         } else {
             throw new UnknownCarException(id);
         }
@@ -41,11 +41,11 @@ class MemoryCarDao implements com.example.app.dao.CarDao {
         return Collections.unmodifiableList(carList);
     }
 
-    public void removeCar(Car product) {
-        removeCar(product.getId());
+    public void remove(Car car) {
+        removeById(car.getId());
     }
 
-    public void removeCar(Long id) {
+    public void removeById(Long id) {
         int index = getCarIndexById(id);
         if (index > -1) {
             carList.remove(index);
@@ -56,8 +56,8 @@ class MemoryCarDao implements com.example.app.dao.CarDao {
 
     private int getCarIndexById(Long id) {
         for (int i = 0; i < carList.size(); ++i) {
-            Car product = carList.get(i);
-            if (product.getId().equals(id)) {
+            Car car = carList.get(i);
+            if (car.getId().equals(id)) {
                 return i;
             }
         }

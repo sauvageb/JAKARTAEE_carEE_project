@@ -5,9 +5,11 @@
     <title>Car Details</title>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
 
 <p>${car.name}</p>
 <p>${car.price}</p>
 
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

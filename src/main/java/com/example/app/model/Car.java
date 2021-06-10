@@ -12,6 +12,12 @@ public class Car implements Serializable {
     public Car() {
     }
 
+    public Car(Long id, String name, float price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
     public Car(String name, float price) {
         this.name = name;
         this.price = price;

@@ -1,4 +1,4 @@
-package com.example.app;
+package com.example.app.dao.exception;
 
 public class UnknownCarException extends RuntimeException {
     public UnknownCarException(Long id) {

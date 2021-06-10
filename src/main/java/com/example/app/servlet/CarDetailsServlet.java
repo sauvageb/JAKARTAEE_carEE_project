@@ -1,5 +1,6 @@
-package com.example.app;
+package com.example.app.servlet;
 
+import com.example.app.dao.DaoFactory;
 import com.example.app.dao.CarDao;
 import com.example.app.model.Car;
 
@@ -26,7 +27,7 @@ public class CarDetailsServlet extends HttpServlet {
         }
 
         CarDao carDao = DaoFactory.getCarDao();
-        Car car = carDao.findCarById(id);
+        Car car = carDao.findById(id);
 
         req.setAttribute("car", car);
 
