@@ -1,41 +1,63 @@
-package com.example.app.dao;
+package com.example.app.dao.jpa;
 
 import com.example.app.model.Car;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import java.util.List;
 
-class JpaCarDao implements com.example.app.dao.CarDao {
+public class JpaCarDao implements com.example.app.dao.CarDao {
 
-    // TODO
-    @Override
-    public void addCar(Car car) {
-//        EntityManager em = ..
-//        em.persist(car);
-//        em.close();
+    private final EntityManagerFactory emf;
+
+    public JpaCarDao(EntityManagerFactory entityManagerFactory) {
+        emf = entityManagerFactory;
     }
 
     @Override
-    public void updateCar(Car car) {
-
+    public boolean create(Car car) {
+        EntityManager em = this.emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            em.persist(car);
+            et.commit();
+        } catch (RuntimeException e) {
+            if (et.isActive()) {
+                et.rollback();
+            }
+            return false;
+        } finally {
+            em.close();
+        }
+        return true;
     }
 
     @Override
-    public Car findCarById(Long id) {
+    public void update(Car car) {
+        // TODO
+    }
+
+    @Override
+    public Car findById(Long id) {
+        // TODO
         return null;
     }
 
     @Override
     public List<Car> findAll() {
+        // TODO
         return null;
     }
 
     @Override
-    public void removeCar(Car car) {
-
+    public void remove(Car car) {
+        // TODO
     }
 
     @Override
-    public void removeCar(Long id) {
-
+    public void removeById(Long id) {
+        // TODO
     }
 }

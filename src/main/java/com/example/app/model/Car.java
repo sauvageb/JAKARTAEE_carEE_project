@@ -1,10 +1,14 @@
 package com.example.app.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
-//@Entity
+@Entity
+@Table(name = "cars")
 public class Car implements Serializable {
-    //@Id
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private float price;
