@@ -1,10 +1,10 @@
-package com.example.app.dao;
+package com.example.app;
 
 import com.example.app.model.Car;
 
 import java.util.List;
 
-class JpaCarDao implements CarDao {
+class JpaCarDao implements com.example.app.dao.CarDao {
 
     // TODO
     @Override

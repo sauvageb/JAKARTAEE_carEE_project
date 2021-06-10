@@ -1,4 +1,4 @@
-package com.example.app.dao;
+package com.example.app;
 
 import com.example.app.model.Car;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class MemoryCarDao implements CarDao {
+class MemoryCarDao implements com.example.app.dao.CarDao {
 
     private static List<Car> carList = new ArrayList();
     private static Long idSequence = 1L;

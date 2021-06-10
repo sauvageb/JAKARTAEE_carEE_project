@@ -1,7 +1,6 @@
 package com.example.app;
 
 import com.example.app.dao.CarDao;
-import com.example.app.dao.DaoFactory;
 import com.example.app.model.Car;
 
 import javax.servlet.RequestDispatcher;

@@ -1,4 +1,4 @@
-package com.example.app.dao;
+package com.example.app;
 
 
 public final class DaoFactory {
@@ -6,7 +6,7 @@ public final class DaoFactory {
     private DaoFactory() {
     }
 
-    public static CarDao getCarDao() {
+    public static com.example.app.dao.CarDao getCarDao() {
 //        return new MemoryCarDao();
         return new JdbcCarDao();
 //        return new JpaCarDao();
