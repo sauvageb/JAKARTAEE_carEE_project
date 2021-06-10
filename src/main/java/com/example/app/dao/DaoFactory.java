@@ -1,12 +1,15 @@
 package com.example.app;
 
 
+import com.example.app.dao.CarDao;
+import com.example.app.dao.JdbcCarDao;
+
 public final class DaoFactory {
 
     private DaoFactory() {
     }
 
-    public static com.example.app.dao.CarDao getCarDao() {
+    public static CarDao getCarDao() {
 //        return new MemoryCarDao();
         return new JdbcCarDao();
 //        return new JpaCarDao();

@@ -1,19 +1,21 @@
-package com.example.app;
+package com.example.app.dao;
 
 import com.example.app.model.Car;
 
 import java.util.List;
 
-class JdbcCarDao implements com.example.app.dao.CarDao {
+class JpaCarDao implements com.example.app.dao.CarDao {
 
     // TODO
     @Override
-    public void addCar(Car product) {
-
+    public void addCar(Car car) {
+//        EntityManager em = ..
+//        em.persist(car);
+//        em.close();
     }
 
     @Override
-    public void updateCar(Car product) {
+    public void updateCar(Car car) {
 
     }
 
@@ -28,7 +30,7 @@ class JdbcCarDao implements com.example.app.dao.CarDao {
     }
 
     @Override
-    public void removeCar(Car product) {
+    public void removeCar(Car car) {
 
     }
 
