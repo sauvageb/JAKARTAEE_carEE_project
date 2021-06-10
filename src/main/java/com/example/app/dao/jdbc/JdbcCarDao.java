@@ -1,39 +1,104 @@
-package com.example.app.dao;
+package com.example.app.dao.jdbc;
 
+import com.example.app.dao.CarDao;
 import com.example.app.model.Car;
 
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
-class JdbcCarDao implements com.example.app.dao.CarDao {
+public class JdbcCarDao implements CarDao {
 
-    // TODO
-    @Override
-    public void addCar(Car product) {
+    private final Connection connection;
 
+    public JdbcCarDao(Connection connection) {
+        this.connection = connection;
     }
 
     @Override
-    public void updateCar(Car product) {
+    public boolean create(Car car) {
+        int isCreated = 0;
+        String query = "INSERT INTO cars (name, price) VALUES(?,?)";
+        try (PreparedStatement pst = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            pst.setString(1, car.getName());
+            pst.setObject(2, car.getPrice());
+            isCreated = pst.executeUpdate();
 
+            this.connection.commit();
+
+            // Fetching generated id from database during insert
+            ResultSet resultSet = pst.getGeneratedKeys();
+            resultSet.next();
+            Long id = resultSet.getLong(1);
+
+            if (id != null) {
+                car.setId(id);
+            }
+
+        } catch (SQLException e1) {
+            System.out.println("mauvaise ID, rollbacked");
+            e1.printStackTrace();
+            try {
+                this.connection.rollback();
+            } catch (SQLException e2) {
+                System.out.println("mauvaise ID, no rollback");
+                e2.printStackTrace();
+            }
+        }
+        return isCreated > 0;
     }
 
     @Override
-    public Car findCarById(Long id) {
-        return null;
+    public void update(Car product) {
+        // TODO
+    }
+
+    @Override
+    public Car findById(Long id) {
+        String query = "SELECT * FROM cars WHERE id = ?";
+        Car foundCar = null;
+        try (PreparedStatement pst = this.connection.prepareStatement(query)) {
+            pst.setLong(1, id);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                foundCar = mapToCar(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return foundCar;
     }
 
     @Override
     public List<Car> findAll() {
-        return null;
+        String query = "SELECT * FROM cars";
+        List<Car> placeList = new ArrayList<>();
+        try (Statement st = this.connection.createStatement()) {
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                placeList.add(mapToCar(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return placeList;
+    }
+
+    private Car mapToCar(ResultSet rs) throws SQLException {
+        Long id = rs.getLong("id");
+        String name = rs.getString("name");
+        float price = rs.getFloat("price");
+        return new Car(id, name, price);
     }
 
     @Override
-    public void removeCar(Car product) {
-
+    public void remove(Car car) {
+        // TODO
     }
 
     @Override
-    public void removeCar(Long id) {
-
+    public void removeById(Long id) {
+        // TODO
     }
 }
