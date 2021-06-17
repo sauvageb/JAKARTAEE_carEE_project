@@ -11,7 +11,6 @@ public class ContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        PersistenceManager.getConnection();
     }
 
     @Override

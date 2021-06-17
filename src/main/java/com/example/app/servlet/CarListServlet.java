@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/"})
+import static com.example.app.servlet.CarListServlet.URL;
+
+@WebServlet(urlPatterns = URL)
 public class CarListServlet extends HttpServlet {
 
     public static final String URL = "/list-car";

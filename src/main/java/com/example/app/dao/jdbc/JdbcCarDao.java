@@ -2,6 +2,7 @@ package com.example.app.dao.jdbc;
 
 import com.example.app.dao.CarDao;
 import com.example.app.model.Car;
+import com.example.app.model.Category;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class JdbcCarDao implements CarDao {
     @Override
     public boolean create(Car car) {
         int isCreated = 0;
-        String query = "INSERT INTO cars (name, price) VALUES(?,?)";
+        String query = "INSERT INTO cars (name, description, price) VALUES(?,?)";
         try (PreparedStatement pst = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             pst.setString(1, car.getName());
             pst.setObject(2, car.getPrice());
@@ -55,7 +56,7 @@ public class JdbcCarDao implements CarDao {
 
     @Override
     public Car findById(Long id) {
-        String query = "SELECT * FROM cars WHERE id = ?";
+        String query = "SELECT cars.id AS id, cars.name AS name, cars.price AS price, categories.id AS category_id, categories.name AS category_name FROM cars INNER JOIN categories WHERE cars.id = ?";
         Car foundCar = null;
         try (PreparedStatement pst = this.connection.prepareStatement(query)) {
             pst.setLong(1, id);
@@ -88,8 +89,10 @@ public class JdbcCarDao implements CarDao {
     private Car mapToCar(ResultSet rs) throws SQLException {
         Long id = rs.getLong("id");
         String name = rs.getString("name");
+        String description = rs.getString("description");
         float price = rs.getFloat("price");
-        return new Car(id, name, price);
+        Category category = new Category(rs.getLong("category_id"), rs.getString("category_name"));
+        return new Car(id, name, description, price, category);
     }
 
     @Override

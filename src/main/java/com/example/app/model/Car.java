@@ -11,20 +11,29 @@ public class Car implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String description;
     private float price;
+
+    @ManyToOne
+    private Category category;
 
     public Car() {
     }
 
-    public Car(Long id, String name, float price) {
+    public Car(Long id, String name, String description, float price, Category category) {
         this.id = id;
         this.name = name;
+        this.description = description;
         this.price = price;
+        this.category = category;
     }
 
-    public Car(String name, float price) {
+
+    public Car(String name, String description, float price, Category category) {
         this.name = name;
+        this.description = description;
         this.price = price;
+        this.category = category;
     }
 
     public Long getId() {
@@ -49,5 +58,21 @@ public class Car implements Serializable {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
