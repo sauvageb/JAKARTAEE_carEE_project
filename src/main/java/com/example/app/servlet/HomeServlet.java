@@ -13,9 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/home")
+import static com.example.app.servlet.HomeServlet.URL;
+
+@WebServlet(urlPatterns = {"/home", URL})
 public class HomeServlet extends HttpServlet {
 
+    public static final String URL = "/list-car";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

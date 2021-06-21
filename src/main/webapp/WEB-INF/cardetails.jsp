@@ -64,7 +64,7 @@
                                 <a href="#"
                                    class="btn btn-lg btn-color btn-icon">Edit<i
                                         class="fa fa-angle-right"></i></a>
-                                <form style="display:inline" action="${pageContext.request.contextPath}/delete-car"
+                                <form style="display:inline" action="${pageContext.request.contextPath}/auth/delete-car"
                                       method="post">
                                     <input type="hidden" value="${car.id}" name="id">
                                     <button type="submit" class="btn btn-lg btn-red btn-icon">Delete <i

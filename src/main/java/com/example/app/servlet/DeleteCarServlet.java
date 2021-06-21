@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/delete-car")
+@WebServlet(urlPatterns = "/auth/delete-car")
 public class DeleteCarServlet extends HttpServlet {
 
     @Override
@@ -25,6 +25,6 @@ public class DeleteCarServlet extends HttpServlet {
             //TODO
         }
 
-        resp.sendRedirect(req.getContextPath() + CarListServlet.URL);
+        resp.sendRedirect(req.getContextPath() + HomeServlet.URL);
     }
 }

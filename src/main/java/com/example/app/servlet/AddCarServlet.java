@@ -58,7 +58,7 @@ public class AddCarServlet extends HttpServlet {
             // TODO : handle error
         }
 
-        resp.sendRedirect(req.getContextPath() + CarListServlet.URL);
+        resp.sendRedirect(req.getContextPath() + HomeServlet.URL);
 
     }
 }
