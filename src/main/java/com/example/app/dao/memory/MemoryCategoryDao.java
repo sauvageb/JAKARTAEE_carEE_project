@@ -2,6 +2,7 @@ package com.example.app.dao.memory;
 
 import com.example.app.dao.CategoryDao;
 import com.example.app.dao.exception.UnknownCarException;
+import com.example.app.model.Car;
 import com.example.app.model.Category;
 
 import java.util.ArrayList;
@@ -54,6 +55,14 @@ public class MemoryCategoryDao implements CategoryDao {
 
     @Override
     public void remove(Category category) {
+        MemoryCarDao carDao = new MemoryCarDao();
+        List<Long> ids = new ArrayList<>();
+        for (Car car : carDao.findAll()) {
+            if (car.getCategory().getId().equals(category.getId())) {
+                ids.add(car.getId());
+            }
+        }
+        ids.forEach(carId -> carDao.removeById(carId));
         removeById(category.getId());
     }
 
@@ -61,7 +70,18 @@ public class MemoryCategoryDao implements CategoryDao {
     public void removeById(Long id) {
         int index = getCarIndexById(id);
         if (index > -1) {
+
+            List<Long> ids = new ArrayList<>();
+            MemoryCarDao carDao = new MemoryCarDao();
+            for (Car car : carDao.findAll()) {
+                if (car.getCategory().getId().equals(categoryList.get(index).getId())) {
+                    ids.add(car.getId());
+                }
+            }
+            ids.forEach(carId -> carDao.removeById(carId));
+
             categoryList.remove(index);
+
         } else {
             throw new UnknownCarException(id);
         }
