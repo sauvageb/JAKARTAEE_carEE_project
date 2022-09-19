@@ -45,7 +45,7 @@
 
 
     <section class="section-wrap white-text" id="contact"
-             style="background-image: url(<c:url value="/img/sections/contact_bg.jpg"/>">
+             style="background-image: url(<c:url value="/img/bg_body/blur.jpg"/>">
         <div class="container">
 
             <div class="heading-row text-center">
@@ -61,11 +61,11 @@
 
                             <div class="col-md-6 col-lg-offset-3">
                                 <select name="carCategory">
-                                        <option value="">--Please choose an category--</option>
-                                        <c:forEach items="${categoryList}" var="c">
-                                            <option value="${c.id}">${c.name}</option>
-                                        </c:forEach>
-                                    </select>
+                                    <option value="">--Please choose an category--</option>
+                                    <c:forEach items="${categoryList}" var="c">
+                                        <option value="${c.id}">${c.name}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
 
 
@@ -75,6 +75,10 @@
 
                             <div class="col-md-6 col-lg-offset-3">
                                 <input name="carDescription" type="text" placeholder="Description">
+                            </div>
+
+                            <div class="col-md-6 col-lg-offset-3">
+                                <input name="carPictureUrl" type="text" placeholder="http://www.example.fr/mycar.jpg">
                             </div>
 
                             <div class="col-md-6 col-lg-offset-3">

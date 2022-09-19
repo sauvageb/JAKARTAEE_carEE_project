@@ -47,10 +47,13 @@
 <div class="main-wrapper oh">
     <div class="row mt-60 mb-60">
         <div class="col-md-12 text-center">
-            <a href="${pageContext.request.contextPath}/auth/add-car" class="btn btn-lg btn-color btn-icon">
-                <span>Create Car</span>
-                <i class="fa fa-angle-right"></i>
-            </a>
+
+            <c:if test="${! empty sessionScope.user}">
+                <a href="${pageContext.request.contextPath}/auth/add-car" class="btn btn-lg btn-color btn-icon">
+                    <span>Create Car</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </c:if>
         </div>
     </div>
 
@@ -67,20 +70,27 @@
                 <c:forEach items="${carList}" var="c">
                     <div class="col-md-4 mb-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
                         <div class="box-shadow">
-                            <img src="img/mission/mission.jpg" class="img-rounded" alt="">
+
+                            <img src="${not empty c.pictureUrl ? c.pictureUrl : ' img/mission/mission.jpg'}"
+                                 class="img-rounded" alt="">
                             <div class="card">
                                 <h4>${c.name}</h4>
+                                <h6>${c.category.name}</h6>
 
                                 <div class="btn-group" role="group">
                                     <a href="${pageContext.request.contextPath}/details-car?id=${c.id}"
                                        class="btn btn-lg btn-color btn-icon">Details
                                         <i class="fa fa-angle-right"></i></a>
-                                    <form style="display:inline" action="${pageContext.request.contextPath}/auth/delete-car"
-                                          method="post">
-                                        <input type="hidden" value="${c.id}" name="id">
-                                        <button type="submit" class="btn btn-lg btn-red btn-icon">Delete <i
-                                                class="fa fa-angle-right"></i></button>
-                                    </form>
+
+                                    <c:if test="${! empty sessionScope.user}">
+                                        <form style="display:inline"
+                                              action="${pageContext.request.contextPath}/auth/delete-car"
+                                              method="post">
+                                            <input type="hidden" value="${c.id}" name="id">
+                                            <button type="submit" class="btn btn-lg btn-red btn-icon">Delete <i
+                                                    class="fa fa-angle-right"></i></button>
+                                        </form>
+                                    </c:if>
                                 </div>
                             </div>
                         </div>
@@ -102,19 +112,19 @@
                     <ul class="tabs__list">
                         <li class="active feature-tabs__tabs__item tabs__item col-sm-4 col-xs-4 col-xxs-6">
                             <a href="#tab-1" class="feature-tabs__link tabs__link">
-                                <i class="icon-search feature-tabs__icon"></i>AAAAAAA
+                                <i class="icon-search feature-tabs__icon"></i>Pellentesque
                             </a>
                         </li>
 
                         <li class="feature-tabs__tabs__item tabs__item col-sm-4 col-xs-4 col-xxs-6">
                             <a href="#tab-2" class="feature-tabs__link tabs__link">
-                                <i class="icon-speedometer feature-tabs__icon"></i>BBBBBBBB
+                                <i class="icon-speedometer feature-tabs__icon"></i>Viverra aliquam
                             </a>
                         </li>
 
                         <li class="feature-tabs__tabs__item tabs__item col-sm-4 col-xs-4 col-xxs-6">
                             <a href="#tab-3" class="feature-tabs__link tabs__link">
-                                <i class="icon-tools feature-tabs__icon"></i>CCCCCCCC
+                                <i class="icon-tools feature-tabs__icon"></i>Vivamus aliquam
                             </a>
                         </li>
                     </ul>
@@ -128,11 +138,20 @@
             <div class="tabs__content__pane active" id="tab-1">
                 <div class="row">
                     <div class="col-md-5">
-                        <p class="lead">AAAAAAA</p>
+                        <p class="lead">Pellentesque</p>
                     </div>
                     <div class="col-md-6 col-md-offset-1 tabs__content__text">
-                        <p>AAAAAAA AAAAAAA AAAAAAA AAAAAAA AAAAAAA AAAAAAA AAAAAAA AAAAAAA AAAAAAA AAAAAAA</p>
-                        <p>AAAAAAA AAAAAAA AAAAAAA AAAAAAA AAAAAAA AAAAAAA AAAAAAA AAAAAAA AAAAAAA AAAAAAA</p>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pharetra massa in tempor
+                            laoreet. Aliquam consectetur vel nisl id sodales. Duis et tempus sapien. Sed pulvinar sem ut
+                            velit accumsan venenatis quis ac tortor. Nunc egestas ipsum in malesuada porta. Nullam in
+                            ornare ligula. In lacus sem, vulputate nec ornare consectetur, sodales et orci. Pellentesque
+                            tincidunt, orci id viverra aliquam, dolor neque faucibus nunc, vel euismod urna ante nec
+                            arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
+                            egestas. Quisque rhoncus molestie lectus sagittis egestas. Nullam faucibus lectus sed sapien
+                            suscipit rhoncus. Nunc sagittis ut augue bibendum faucibus. Suspendisse eget enim nec augue
+                            dapibus tincidunt. Morbi posuere vitae augue ac tempus.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -140,11 +159,20 @@
             <div class="tabs__content__pane" id="tab-2">
                 <div class="row">
                     <div class="col-md-5">
-                        <p class="lead">BBBBBBB</p>
+                        <p class="lead">Viverra aliquam</p>
                     </div>
                     <div class="col-md-6 col-md-offset-1 tabs__content__text">
-                        <p>BBBBBBB BBBBBBB BBBBBBB BBBBBBB BBBBBBB BBBBBBB BBBBBBB BBBBBBB BBBBBBB BBBBBBB</p>
-                        <p>BBBBBBB BBBBBBB BBBBBBB BBBBBBB BBBBBBB BBBBBBB BBBBBBB BBBBBBB BBBBBBB BBBBBBB</p>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pharetra massa in tempor
+                            laoreet. Aliquam consectetur vel nisl id sodales. Duis et tempus sapien. Sed pulvinar sem ut
+                            velit accumsan venenatis quis ac tortor. Nunc egestas ipsum in malesuada porta. Nullam in
+                            ornare ligula. In lacus sem, vulputate nec ornare consectetur, sodales et orci. Pellentesque
+                            tincidunt, orci id viverra aliquam, dolor neque faucibus nunc, vel euismod urna ante nec
+                            arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
+                            egestas. Quisque rhoncus molestie lectus sagittis egestas. Nullam faucibus lectus sed sapien
+                            suscipit rhoncus. Nunc sagittis ut augue bibendum faucibus. Suspendisse eget enim nec augue
+                            dapibus tincidunt. Morbi posuere vitae augue ac tempus.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -152,18 +180,27 @@
             <div class="tabs__content__pane" id="tab-3">
                 <div class="row">
                     <div class="col-md-5">
-                        <p class="lead">CCCCCCC</p>
+                        <p class="lead">Vivamus aliquam</p>
                     </div>
                     <div class="col-md-6 col-md-offset-1 tabs__content__text">
-                        <p>CCCCCCC CCCCCCC CCCCCCC CCCCCCC CCCCCCC CCCCCCC CCCCCCC CCCCCCC CCCCCCC CCCCCCC</p>
-                        <p>CCCCCCC CCCCCCC CCCCCCC CCCCCCC CCCCCCC CCCCCCC CCCCCCC CCCCCCC CCCCCCC CCCCCCC</p>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pharetra massa in tempor
+                            laoreet. Aliquam consectetur vel nisl id sodales. Duis et tempus sapien. Sed pulvinar sem ut
+                            velit accumsan venenatis quis ac tortor. Nunc egestas ipsum in malesuada porta. Nullam in
+                            ornare ligula. In lacus sem, vulputate nec ornare consectetur, sodales et orci. Pellentesque
+                            tincidunt, orci id viverra aliquam, dolor neque faucibus nunc, vel euismod urna ante nec
+                            arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
+                            egestas. Quisque rhoncus molestie lectus sagittis egestas. Nullam faucibus lectus sed sapien
+                            suscipit rhoncus. Nunc sagittis ut augue bibendum faucibus. Suspendisse eget enim nec augue
+                            dapibus tincidunt. Morbi posuere vitae augue ac tempus.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-wrap white-text pt-sm-50" style="background-image: url(img/sections/results_bg.jpg)">
+    <section class="section-wrap white-text pt-sm-50" style="background-image: url('img/bg_body/sunset.jpg')">
         <div class="container text-center">
             <div class="row text-center">
                 <div class="col-sm-12 mb-sm-40 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">

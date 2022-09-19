@@ -45,7 +45,7 @@
 
 
     <section class="section-wrap white-text" id="contact"
-             style="background-image: url(<c:url value="/img/sections/contact_bg.jpg"/>">
+             style="background-image: url(<c:url value="/img/bg_body/blur.jpg"/>">
         <div class="container">
 
             <div class="heading-row text-center">
@@ -59,7 +59,7 @@
 
                         <div class="row">
                             <div class="col-md-6 col-lg-offset-3">
-                                <input name="carName" type="text" placeholder="Name">
+                                <input name="categoryName" type="text" placeholder="Name">
                             </div>
 
                         </div>

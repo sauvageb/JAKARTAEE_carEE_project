@@ -51,7 +51,8 @@
             <div class="row">
                 <div class="col-md-10 mb-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
                     <div class="box-shadow text-center">
-                        <img src="img/mission/mission.jpg" class="img-rounded mt-20 mb-20 ml-20 mt-20" alt="">
+                        <img src="${not empty car.pictureUrl ? car.pictureUrl : ' img/mission/mission.jpg'}"
+                             class="img-rounded mt-20 mb-20 ml-20 mt-20" alt="">
                         <div class="card">
                             <h4>${car.name}</h4>
                             <p class="text-left">Description : ${car.description}</p>
@@ -60,16 +61,22 @@
                                 <a href="${pageContext.request.contextPath}/list-category"
                                    class="btn btn-primary">${car.category.name}</a>
                             </div>
+
+                            <%--            actions                --%>
                             <div class="btn-group text-right" role="group">
-                                <a href="#"
-                                   class="btn btn-lg btn-color btn-icon">Edit<i
-                                        class="fa fa-angle-right"></i></a>
-                                <form style="display:inline" action="${pageContext.request.contextPath}/auth/delete-car"
-                                      method="post">
-                                    <input type="hidden" value="${car.id}" name="id">
-                                    <button type="submit" class="btn btn-lg btn-red btn-icon">Delete <i
-                                            class="fa fa-angle-right"></i></button>
-                                </form>
+                                <c:if test="${! empty sessionScope.user}">
+                                    <a href="#"
+                                       class="btn btn-lg btn-color btn-icon">Edit<i
+                                            class="fa fa-angle-right"></i></a>
+                                    <form style="display:inline"
+                                          action="${pageContext.request.contextPath}/auth/delete-car"
+                                          method="post">
+                                        <input type="hidden" value="${car.id}" name="id">
+                                        <button type="submit" class="btn btn-lg btn-red btn-icon">Delete <i
+                                                class="fa fa-angle-right"></i></button>
+                                    </form>
+
+                                </c:if>
                             </div>
                         </div>
                     </div>

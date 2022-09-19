@@ -47,7 +47,7 @@
 <main class="main oh">
 
     <section class="section-wrap white-text" id="contact"
-             style="background-image: url(<c:url value="/img/sections/contact_bg.jpg"/>">
+             style="background-image: url(<c:url value="/img/bg_body/blur.jpg"/>">
         <div class="container">
 
             <div class="heading-row text-center">

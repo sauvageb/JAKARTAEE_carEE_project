@@ -47,10 +47,15 @@
 <div class="main-wrapper oh">
     <div class="row mt-60 mb-60">
         <div class="col-md-12 text-center">
-            <a href="${pageContext.request.contextPath}/auth/add-category" class="btn btn-lg btn-color btn-icon">
-                <span>Create Category</span>
-                <i class="fa fa-angle-right"></i>
-            </a>
+
+            <c:if test="${! empty sessionScope.user}">
+
+                <a href="${pageContext.request.contextPath}/auth/add-category" class="btn btn-lg btn-color btn-icon">
+                    <span>Create Category</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </c:if>
+
         </div>
     </div>
 
@@ -71,15 +76,19 @@
                                 <h4>${c.name}</h4>
 
                                 <div class="btn-group" role="group">
-                                    <a href="#"
-                                       class="btn btn-lg btn-color btn-icon">Edit<i
-                                            class="fa fa-angle-right"></i></a>
-                                    <form style="display:inline"
-                                          action="${pageContext.request.contextPath}/delete-category" method="post">
-                                        <input type="hidden" value="${c.id}" name="id">
-                                        <button type="submit" class="btn btn-lg btn-red btn-icon">Delete <i
-                                                class="fa fa-angle-right"></i></button>
-                                    </form>
+                                    <c:if test="${! empty sessionScope.user}">
+
+                                        <a href="#"
+                                           class="btn btn-lg btn-color btn-icon">Edit<i
+                                                class="fa fa-angle-right"></i></a>
+                                        <form style="display:inline"
+                                              action="${pageContext.request.contextPath}/delete-category" method="post">
+                                            <input type="hidden" value="${c.id}" name="id">
+                                            <button type="submit" class="btn btn-lg btn-red btn-icon">Delete <i
+                                                    class="fa fa-angle-right"></i></button>
+                                        </form>
+
+                                    </c:if>
                                 </div>
                             </div>
                         </div>

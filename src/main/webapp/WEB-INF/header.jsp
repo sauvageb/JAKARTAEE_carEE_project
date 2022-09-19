@@ -8,7 +8,7 @@
         <div class="container relative">
             <div class="flex-parent">
 
-                <form method="get" action="/list-car" class="nav__search-wrap">
+                <form method="get" action="${pageContext.request.contextPath}/list-car" class="nav__search-wrap">
                     <input type="search" class="nav__search-input" placeholder="Searching...">
                     <i class="fa fa-close nav__search-close" id="nav__search-close"></i>
                 </form>
@@ -16,7 +16,7 @@
                 <div class="nav__header clearfix">
                     <!-- Logo -->
                     <div class="logo-wrap">
-                        <a href="index.html" class="logo__link">
+                        <a href="${pageContext.request.contextPath}/home" class="logo__link">
                             <img class="logo logo--dark" src="https://img.icons8.com/ios/60/000000/car--v1.png"
                                  alt="logo">
                         </a>
