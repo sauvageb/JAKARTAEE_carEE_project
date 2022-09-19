@@ -14,25 +14,29 @@ public class Car implements Serializable {
     private String description;
     private float price;
 
+    private String pictureUrl;
+
     @ManyToOne
     private Category category;
 
     public Car() {
     }
 
-    public Car(Long id, String name, String description, float price, Category category) {
+    public Car(Long id, String name, String description, float price, String pictureUrl, Category category) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.pictureUrl = pictureUrl;
         this.category = category;
     }
 
 
-    public Car(String name, String description, float price, Category category) {
+    public Car(String name, String description, float price, String pictureUrl, Category category) {
         this.name = name;
         this.description = description;
         this.price = price;
+        this.pictureUrl = pictureUrl;
         this.category = category;
     }
 
@@ -66,6 +70,14 @@ public class Car implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
     }
 
     public Category getCategory() {

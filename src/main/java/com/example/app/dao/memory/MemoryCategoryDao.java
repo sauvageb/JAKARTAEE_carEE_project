@@ -15,7 +15,7 @@ public class MemoryCategoryDao implements CategoryDao {
 
     public MemoryCategoryDao() {
         if (idSequence < 1) {
-            categoryList.add(new Category(++idSequence, "Example Category 1"));
+            categoryList.add(new Category(++idSequence, "Électrique"));
         }
     }
 

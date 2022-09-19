@@ -91,8 +91,9 @@ public class JdbcCarDao implements CarDao {
         String name = rs.getString("name");
         String description = rs.getString("description");
         float price = rs.getFloat("price");
+        String pictureUrl = rs.getString("pictureUrl");
         Category category = new Category(rs.getLong("category_id"), rs.getString("category_name"));
-        return new Car(id, name, description, price, category);
+        return new Car(id, name, description, price, pictureUrl, category);
     }
 
     @Override

@@ -33,6 +33,7 @@ public class AddCarServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String carName = req.getParameter("carName");
         String carDescription = req.getParameter("carDescription");
+        String pictureUrl = req.getParameter("carPictureUrl");
         String priceStr = req.getParameter("carPrice");
 
         String categoryIdStr = req.getParameter("carCategory");
@@ -51,7 +52,7 @@ public class AddCarServlet extends HttpServlet {
             price = Float.parseFloat(priceStr);
 
             CarDao carDAO = DaoFactory.getCarDao();
-            Car newCar = new Car(carName, carDescription, price, category);
+            Car newCar = new Car(carName, carDescription, price, pictureUrl, category);
             carDAO.create(newCar);
 
         } catch (NumberFormatException e) {
